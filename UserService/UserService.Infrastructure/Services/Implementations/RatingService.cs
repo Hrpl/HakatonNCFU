@@ -27,4 +27,13 @@ public class RatingService : IRatingService
 
         await _asyncRepository.ExecuteAsync(query, ct);
     }
+
+    public async Task<IEnumerable<RatingModel>> GetRatingUsersAsync(CancellationToken ct)
+    {
+        var query = _asyncRepository.GetQueryBuilder("Rating").OrderByDesc("Points");
+
+        var result = await _asyncRepository.GetListAsync<RatingModel>(query, ct: ct);
+
+        return result;
+    }
 }
