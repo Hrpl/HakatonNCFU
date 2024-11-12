@@ -66,5 +66,7 @@ public static class AddServiceExtensions
         services.AddScoped<IAsyncRepository, AsyncRepository>();
         services.AddScoped<IUserService, UserService.Infrastructure.Services.Implementations.UserService>();
         services.AddScoped<IUserProfileService, UserProfileService>();
+        services.AddScoped<IAdvanseService, AdvanseService>();
+        services.AddScoped<IProgressService, ProgressService>();
     } 
 }

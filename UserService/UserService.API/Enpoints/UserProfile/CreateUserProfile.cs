@@ -14,11 +14,20 @@ public class CreateUserProfile : Endpoint<UserProfileRequest>
     private readonly UserManager<AppUser> _userManager;
     private readonly IMapper _mapper;
     private readonly IUserProfileService _userProfileService;
-    public CreateUserProfile(UserManager<AppUser> userManager, IMapper mapper, IUserProfileService userProfileService)
+    private readonly IAdvanseService _advanseService;
+    private readonly IProgressService _progressService;
+
+    public CreateUserProfile(UserManager<AppUser> userManager, 
+        IMapper mapper, 
+        IUserProfileService userProfileService, 
+        IAdvanseService advanseService,
+        IProgressService progressService)
     {
         _userManager = userManager;
         _mapper = mapper;
         _userProfileService = userProfileService;
+        _advanseService = advanseService;
+        _progressService = progressService;
     }
 
     public override void Configure()
@@ -41,6 +50,8 @@ public class CreateUserProfile : Endpoint<UserProfileRequest>
         var model = _mapper.Map<UserProfileModel>(req);
         model.UserId = user.Id;
 
+        await _progressService.CreateProgressAsync(user.Id, ct);
+        await _advanseService.CreateUserAdvanseAsync(user.Id, ct);
         await _userProfileService.CreateUserProfileAsync(model, ct);
     }
 }

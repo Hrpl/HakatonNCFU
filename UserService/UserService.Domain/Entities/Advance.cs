@@ -13,4 +13,5 @@ public class Advance : BaseEntity
     public bool OneHundredKilometers { get; set; }
     public bool OneHundredPushUp { get; set; }
     public bool ThousandPushUp { get; set; }
+
 }
