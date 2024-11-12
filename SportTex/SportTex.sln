@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.11.35208.52
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SportTex.Domain", "SportTex.Domain\SportTex.Domain.csproj", "{5657E446-7F07-4A1C-9C51-A0DF7214D83F}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{5657E446-7F07-4A1C-9C51-A0DF7214D83F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5657E446-7F07-4A1C-9C51-A0DF7214D83F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5657E446-7F07-4A1C-9C51-A0DF7214D83F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5657E446-7F07-4A1C-9C51-A0DF7214D83F}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {DA653F3B-9B27-439D-8888-335B8A8C37D1}
+	EndGlobalSection
+EndGlobal
