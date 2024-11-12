@@ -68,5 +68,6 @@ public static class AddServiceExtensions
         services.AddScoped<IUserProfileService, UserProfileService>();
         services.AddScoped<IAdvanseService, AdvanseService>();
         services.AddScoped<IProgressService, ProgressService>();
+        services.AddScoped<IRatingService, RatingService>();
     } 
 }

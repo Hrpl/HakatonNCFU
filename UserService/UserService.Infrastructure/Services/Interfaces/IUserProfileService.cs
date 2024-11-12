@@ -10,4 +10,5 @@ namespace UserService.Infrastructure.Services.Interfaces;
 public interface IUserProfileService
 {
     public Task CreateUserProfileAsync(UserProfileModel model, CancellationToken ct);
+    public Task<UserProfileModel> GetUserProfileAsync(int userId, CancellationToken ct);
 }

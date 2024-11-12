@@ -7,27 +7,30 @@ using UserService.Domain.Models;
 using UserService.Infrastructure.Services.Implementations;
 using UserService.Infrastructure.Services.Interfaces;
 
-namespace UserService.API.Enpoints.UserProfile;
+namespace UserService.API.Enpoints.UserProfile.Create;
 
-public class CreateUserProfile : Endpoint<UserProfileRequest>
+public class CreateUserProfileHandle : Endpoint<UserProfileRequest>
 {
     private readonly UserManager<AppUser> _userManager;
     private readonly IMapper _mapper;
     private readonly IUserProfileService _userProfileService;
     private readonly IAdvanseService _advanseService;
     private readonly IProgressService _progressService;
+    private readonly IRatingService _ratingService;
 
-    public CreateUserProfile(UserManager<AppUser> userManager, 
-        IMapper mapper, 
-        IUserProfileService userProfileService, 
+    public CreateUserProfileHandle(UserManager<AppUser> userManager,
+        IMapper mapper,
+        IUserProfileService userProfileService,
         IAdvanseService advanseService,
-        IProgressService progressService)
+        IProgressService progressService,
+        IRatingService ratingService)
     {
         _userManager = userManager;
         _mapper = mapper;
         _userProfileService = userProfileService;
         _advanseService = advanseService;
         _progressService = progressService;
+        _ratingService = ratingService;
     }
 
     public override void Configure()
@@ -50,6 +53,7 @@ public class CreateUserProfile : Endpoint<UserProfileRequest>
         var model = _mapper.Map<UserProfileModel>(req);
         model.UserId = user.Id;
 
+        await _ratingService.CreateRatingRecordAsync(user.Id, ct);
         await _progressService.CreateProgressAsync(user.Id, ct);
         await _advanseService.CreateUserAdvanseAsync(user.Id, ct);
         await _userProfileService.CreateUserProfileAsync(model, ct);

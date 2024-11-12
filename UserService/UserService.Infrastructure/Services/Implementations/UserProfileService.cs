@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using UserService.Domain.Models;
+using UserService.Infrastructure.Context;
 using UserService.Infrastructure.Repositories.Interfaces;
 using UserService.Infrastructure.Services.Interfaces;
 
@@ -27,5 +28,15 @@ public class UserProfileService : IUserProfileService
             .AsInsert(model);
 
         await _asyncRepository.ExecuteAsync(query, ct);
+    }
+
+    public async Task<UserProfileModel> GetUserProfileAsync(int userId, CancellationToken ct)
+    {
+        var query = _asyncRepository.GetQueryBuilder("UserProfiles").Where("UserId", "=", userId)
+            .Select("UserId", "Name", "Surname", "SecondName", "CreatedAt", "UpdatedAt", "IsDeleted", "HomeAddress", "Photo");
+
+        var result = await _asyncRepository.GetAsync<UserProfileModel>(query, ct:ct);
+
+        return result;
     }
 }
