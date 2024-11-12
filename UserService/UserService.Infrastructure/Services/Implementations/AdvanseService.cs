@@ -27,4 +27,14 @@ public class AdvanseService : IAdvanseService
 
         await _asyncRepository.ExecuteAsync(query, ct);
     }
+
+    public async Task<AdvanceModel> GetAdvanceAsync(int userId, CancellationToken ct)
+    {
+        var query = _asyncRepository.GetQueryBuilder("Advances")
+            .Where("UserId", "=", userId);
+
+        var result = await _asyncRepository.GetAsync<AdvanceModel>(query);
+
+        return result;
+    }
 }
