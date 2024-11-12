@@ -65,5 +65,6 @@ public static class AddServiceExtensions
         services.AddScoped<IDbConnectionManager, DbConnectionManager>();
         services.AddScoped<IAsyncRepository, AsyncRepository>();
         services.AddScoped<IUserService, UserService.Infrastructure.Services.Implementations.UserService>();
+        services.AddScoped<IUserProfileService, UserProfileService>();
     } 
 }

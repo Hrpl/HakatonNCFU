@@ -37,7 +37,7 @@ public class CreateUserHandle : Endpoint<AppUser>
         if (findEmail.Result != null) throw new Exception("Пользователь с таким email уже существует");
 
         var res = await _userManager.CreateAsync(req, req.PasswordHash);
-
-        await SendOkAsync();
+        if (res.Errors.ToList().Count > 0) throw new Exception($"{res.Errors.First().Description}");
+        else await SendOkAsync(req.Email);
     }
 }
