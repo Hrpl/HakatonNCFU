@@ -8,7 +8,7 @@ using UserService.Infrastructure.Services.Interfaces;
 
 namespace UserService.API.Enpoints.Auth.Login;
 
-public class LoginHandle : Endpoint<LoginRequest, JwtResponse>
+public class LoginHandle : Endpoint<UserService.Domain.Commons.Requests.LoginRequest, JwtResponse>
 {
     private readonly UserManager<AppUser> _userManager;
     private readonly IJwtService _jwtService;
@@ -41,7 +41,7 @@ public class LoginHandle : Endpoint<LoginRequest, JwtResponse>
         });
     }
     
-    public override async Task HandleAsync(LoginRequest req, CancellationToken ct)
+    public override async Task HandleAsync(UserService.Domain.Commons.Requests.LoginRequest req, CancellationToken ct)
     {
         var user = await _userManager.FindByEmailAsync(req.Email);
         //TODO: создать middleware для обработки статсу кодов
